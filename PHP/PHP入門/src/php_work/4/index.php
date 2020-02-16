@@ -10,6 +10,11 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+// エラーメッセージがあれば削除する
+if (isset($_SESSION['error'])) {
+    unset($_SESSION['error']);
+}
+
 // 検索条件
 $pref = '';
 if (isset($_GET['pref'])) {
@@ -147,7 +152,7 @@ $list = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= $v['pref'] ?></td>
                         <td><?= $v['tel'] ?></td>
                         <td>
-                        <form action="./update.php" method="post" style="display: inline">
+                            <form action="./update.php" method="post" style="display: inline">
                                 <input type="hidden" name="id" value="<?= $v['id'] ?>">
                                 <input type="submit" class="btn btn-primary" value="修正">
                             </form>

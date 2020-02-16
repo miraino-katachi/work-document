@@ -10,6 +10,11 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
+// エラーメッセージがあれば削除する
+if (isset($_SESSION['error'])) {
+    unset($_SESSION['error']);
+}
+
 // 検索条件
 $pref = '';
 if (isset($_GET['pref'])) {
